@@ -45,13 +45,17 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           ValueListenableBuilder(
-            valueListenable: currentlyPlaying,
-            builder: (BuildContext context, AudioObject? audioObject,
-                    Widget? child) =>
-                audioObject != null
-                    ? DetailedPlayer(audioObject: audioObject)
-                    : Container(),
-          ),
+              valueListenable: currentlyPlaying,
+              builder: (BuildContext context, AudioObject? audioObject,
+                  Widget? child) {
+                bool isActive = audioObject != null;
+                return isActive
+                    ? DetailedPlayer(
+                        audioObject: audioObject,
+                        isActive: isActive,
+                      )
+                    : Container();
+              }),
         ],
       ),
       bottomNavigationBar: ValueListenableBuilder(

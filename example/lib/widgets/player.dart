@@ -11,8 +11,13 @@ final MiniplayerController controller = MiniplayerController();
 
 class DetailedPlayer extends StatelessWidget {
   final AudioObject audioObject;
+  final bool isActive;
 
-  const DetailedPlayer({Key? key, required this.audioObject}) : super(key: key);
+  const DetailedPlayer({
+    Key? key,
+    required this.audioObject,
+    required this.isActive,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +27,7 @@ class DetailedPlayer extends StatelessWidget {
       maxHeight: playerMaxHeight,
       controller: controller,
       elevation: 4,
+      isActive: isActive,
       onDismissed: () => currentlyPlaying.value = null,
       curve: Curves.easeOut,
       builder: (height, percentage) {
